@@ -36,17 +36,12 @@ namespace CSCELearning.Task_1_Part_A
                 // If URIs are the same
                 // Display cached XML
                 wsResponseXmlDoc = new XmlDocument();
-                wsResponseXmlDoc.Load("C:/Users/Student/Desktop/CSC/CSCELearning/CSCELearning/Task 1 Part A/WeatherServiceCache.xml");
+                wsResponseXmlDoc.Load(Server.MapPath("WeatherServiceCache.xml"));
 
                 //display the XML response 
                 String xmlString = wsResponseXmlDoc.InnerXml;
                 Response.ContentType = "text/xml";
                 Response.Write(xmlString);
-
-                // Save the document to a file and auto-indent the output.
-                XmlTextWriter writer = new XmlTextWriter(Server.MapPath("xmlweather.xml"), null);
-                writer.Formatting = Formatting.Indented;
-                wsResponseXmlDoc.Save(writer);
 
             }
             else
@@ -76,17 +71,12 @@ namespace CSCELearning.Task_1_Part_A
                 {
                     // If error
                     wsResponseXmlDoc = new XmlDocument();
-                    wsResponseXmlDoc.Load("C:/Users/Student/Desktop/CSC/CSCELearning/CSCELearning/Task 1 Part A/WeatherService.xml");
+                    wsResponseXmlDoc.Load(Server.MapPath("WeatherService.xml"));
 
                     //display the XML response 
                     String xmlString = wsResponseXmlDoc.InnerXml;
                     Response.ContentType = "text/xml";
                     Response.Write(xmlString);
-
-                    // Save the document to a file and auto-indent the output.
-                    XmlTextWriter writer = new XmlTextWriter(Server.MapPath("xmlweather.xml"), null);
-                    writer.Formatting = Formatting.Indented;
-                    wsResponseXmlDoc.Save(writer);
 
                 }
                 else
@@ -97,19 +87,13 @@ namespace CSCELearning.Task_1_Part_A
                     Response.ContentType = "text/xml";
                     Response.Write(xmlString);
 
-                    // Save the document to a file and auto-indent the output.
-                    XmlTextWriter writer = new XmlTextWriter(Server.MapPath("xmlweather.xml"), null);
-                    writer.Formatting = Formatting.Indented;
-                    wsResponseXmlDoc.Save(writer);
-
                     // Cache URI and XML
 
                     // Write URI to file
-                    String filePath = "C:/Users/Student/Desktop/CSC/CSCELearning/CSCELearning/Task 1 Part A";
-                    File.WriteAllText(filePath + @"/cachedURI.txt", url.ToString());
+                    File.WriteAllText(Server.MapPath("cachedURI.txt"), url.ToString());
 
                     // Save XML file in cache
-                    wsResponseXmlDoc.Save("C:/Users/Student/Desktop/CSC/CSCELearning/CSCELearning/Task 1 Part A/WeatherServiceCache.xml");
+                    wsResponseXmlDoc.Save(Server.MapPath("WeatherServiceCache.xml"));
 
 
                 }
