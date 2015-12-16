@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ErrorMsg xmlns="http://tempuri.org/WeatherServiceSchema.xsd">
+  We are experiencing technical difficulties. Sorry for the inconvenience caused!
+</ErrorMsg>

@@ -1,0 +1,12 @@
+C:\cygwin64\ppc\PPC\CSCELearning\CSCELearning\bin\CSCELearning.dll.config
+C:\cygwin64\ppc\PPC\CSCELearning\CSCELearning\bin\CSCELearning.dll
+C:\cygwin64\ppc\PPC\CSCELearning\CSCELearning\bin\CSCELearning.pdb
+C:\cygwin64\ppc\PPC\CSCELearning\CSCELearning\obj\Debug\CSCELearning.csprojResolveAssemblyReference.cache
+C:\cygwin64\ppc\PPC\CSCELearning\CSCELearning\obj\Debug\CSCELearning.dll
+C:\cygwin64\ppc\PPC\CSCELearning\CSCELearning\obj\Debug\CSCELearning.pdb
+C:\Users\Student\Desktop\CSC\CSCELearning\CSCELearning\bin\CSCELearning.dll.config
+C:\Users\Student\Desktop\CSC\CSCELearning\CSCELearning\bin\CSCELearning.dll
+C:\Users\Student\Desktop\CSC\CSCELearning\CSCELearning\bin\CSCELearning.pdb
+C:\Users\Student\Desktop\CSC\CSCELearning\CSCELearning\obj\Debug\CSCELearning.csprojResolveAssemblyReference.cache
+C:\Users\Student\Desktop\CSC\CSCELearning\CSCELearning\obj\Debug\CSCELearning.dll
+C:\Users\Student\Desktop\CSC\CSCELearning\CSCELearning\obj\Debug\CSCELearning.pdb

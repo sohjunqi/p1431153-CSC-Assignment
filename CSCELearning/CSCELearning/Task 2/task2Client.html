@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+
+<!--JQuery API-->
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+<script>
+
+        $(document).ready(function () {
+
+            $("#requestBtn").click(function () {
+
+                $("#myDiv").load("ServerTime.aspx", function (responseTxt, statusTxt, xhr) {
+
+                    if (statusTxt == "success") {
+                        $("#myDiv").html("Server-side Time: " + "<span style='color:blue'>" + responseTxt + "</span>");
+                    } else {
+                        $("#myDiv").html("<span style='color: red'>An error has occurred</span><br />Error: " + xhr.status + ": " + xhr.statusText);
+                    }
+                });
+
+            });
+        });
+
+</script>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+    HTTP Request: Server Time
+    <br />
+    <input type="button" id="requestBtn" value="Get server time" />
+    <br />
+    <div id="myDiv"></div>
+
+</body>
+</html>

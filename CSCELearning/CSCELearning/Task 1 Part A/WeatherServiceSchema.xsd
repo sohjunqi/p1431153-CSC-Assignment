@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="WeatherServiceSchema"
+    targetNamespace="http://tempuri.org/WeatherServiceSchema.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/WeatherServiceSchema.xsd"
+    xmlns:mstns="http://tempuri.org/WeatherServiceSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:element name="ErrorMsg" type="xs:string">
+  </xs:element>
+  
+</xs:schema>

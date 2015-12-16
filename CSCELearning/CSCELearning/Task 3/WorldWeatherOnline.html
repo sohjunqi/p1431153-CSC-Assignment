@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <form id="form1">
+        <div>
+            <input type="submit" id="btnLocalWeatherFree" value="Get Local Weather - Free API" />
+            <br />
+            <br />
+            <input type="submit" id="btnLocationSearchFree" value="Search Location - Free API" />
+            <br />
+            <br />
+            <input type="submit" id="btnTimeZoneFree" value="Get Time Zone - Free API" />
+            <br />
+            <br />
+            <input type="submit" id="btnMarineWeatherFree" value="Get Marine Weather - Free API" />
+            <br />
+            <br />
+            <div id="resultContainer">
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    var resultContainer = $('#resultContainer');
+    var output = '';
+
+    var _FreeApiBaseURL = 'http://api.worldweatheronline.com/free/v2/';
+    var _FreeApiKey = '6d0eb3b10c88b8dc90d064353fa65';
+
+    $(document).ready(function () {
+
+        $('#btnLocalWeatherFree').click(GetLocalWeather);
+        $('#btnLocationSearchFree').click(SearchLocation);
+        $('#btnTimeZoneFree').click(GetTimeZone);
+        $('#btnMarineWeatherFree').click(GetMarineWeather);
+
+    });
+
+    //------------ LOCAL WEATHER ----------------
+
+    // Function called when button clicked
+    function GetLocalWeather(e) {
+
+        // Get JSON request parameters
+        var localWeatherInput = {
+            query: 'Singapore',
+            format: 'JSON',
+            num_of_days: '2',
+            date: '',
+            fx: '',
+            cc: '',
+            includelocation: '',
+            show_comments: '',
+            callback: 'LocalWeatherCallback'
+        };
+
+        JSONP_LocalWeather(localWeatherInput);
+        e.preventDefault();
+    }
+
+    // Output function
+    function LocalWeatherCallback(localWeather) {
+
+        output = "<br/> Cloud Cover: " + localWeather.data.current_condition[0].cloudcover;
+        output += "<br/> Humidity: " + localWeather.data.current_condition[0].humidity;
+        output += "<br/> Temp C: " + localWeather.data.current_condition[0].temp_C;
+        output += "<br/> Visibility: " + localWeather.data.current_condition[0].weatherDesc[0].value;
+        output += "<br/> Observation Time: " + localWeather.data.current_condition[0].observation_time;
+        output += "<br/> Pressure: " + localWeather.data.current_condition[0].pressure;
+
+        resultContainer.empty();
+        resultContainer.html(output);
+
+    }
+
+    // Creates and sends JSON request to API
+    function JSONP_LocalWeather(input) {
+        var url = _FreeApiBaseURL + 'weather.ashx?q=' + input.query + '&format=' + input.format + '&extra=' + input.extra + '&num_of_days=' + input.num_of_days + '&date=' + input.date + '&fx=' + input.fx + '&cc=' + input.cc + '&includelocation=' + input.includelocation + '&show_comments=' + input.show_comments + '&key=' + _FreeApiKey;
+
+        jsonP(url, input.callback);
+    }
+
+    //-------------------------------------------
+
+    //------------ SEARCH LOCATION ----------------
+
+    function SearchLocation(e) {
+
+        var searchLocationInput = {
+            query: 'Singapore',
+            format: 'JSON',
+            timezone: 'yes',
+            popular: '',
+            num_of_results: '',
+            callback: 'SearchLocationCallback'
+        };
+
+        JSONP_SearchLocation(searchLocationInput);
+        e.preventDefault();
+    }
+
+    function SearchLocationCallback(locationSearch) {
+
+        output = "<br/> Area Name: " + locationSearch.search_api.result[0].areaName[0].value;
+        output += "<br/> Country: " + locationSearch.search_api.result[0].country[0].value;
+        output += "<br/> Latitude: " + locationSearch.search_api.result[0].latitude;
+        output += "<br/> Longitude: " + locationSearch.search_api.result[0].longitude;
+        output += "<br/> Population: " + locationSearch.search_api.result[0].population;
+        output += "<br/> Region: " + locationSearch.search_api.result[0].region[0].value;
+
+        resultContainer.empty();
+        resultContainer.html(output);
+
+    }
+
+    function JSONP_SearchLocation(input) {
+        var url = _FreeApiBaseURL + "search.ashx?q=" + input.query + "&format=" + input.format /*+ "&timezone=" + input.timezone + "&popular=" + input.popular + "&num_of_results=" + input.num_of_results */+ "&key=" + _FreeApiKey;
+
+        jsonP(url, input.callback);
+    }
+
+
+    //-------------------------------------------
+
+
+    //------------ TIME ZONE ----------------
+
+    function GetTimeZone(e) {
+
+        var timeZoneInput = {
+            query: 'Singapore',
+            format: 'JSON',
+            callback: 'TimeZoneCallback'
+        };
+
+        JSONP_TimeZone(timeZoneInput);
+        e.preventDefault();
+    }
+
+    function TimeZoneCallback(timeZone) {
+
+        output = "<br/> Local Time: " + timeZone.data.time_zone[0].localtime;
+        output += "<br/> Time Offset: " + timeZone.data.time_zone[0].utcOffset;
+
+        resultContainer.empty();
+        resultContainer.html(output);
+
+    }
+
+    function JSONP_TimeZone(input) {
+        var url = _FreeApiBaseURL + "tz.ashx?q=" + input.query + "&format=" + input.format + "&key=" + _FreeApiKey;
+
+        jsonP(url, input.callback);
+    }
+
+    //-------------------------------------------
+
+
+    //------------ MARINE WEATHER ----------------
+
+    function GetMarineWeather(e) {
+
+        var marineWeatherInput = {
+            query: '45,-2',
+            format: 'JSON',
+            fx: '',
+            callback: 'MarineWeatherCallback'
+        };
+
+        JSONP_MarineWeather(marineWeatherInput);
+        e.preventDefault();
+    }
+
+    function MarineWeatherCallback(marineWeather) {
+
+        output = "<br/> Date: " + marineWeather.data.weather[0].date;
+        output += "<br/> Min Temp (c): " + marineWeather.data.weather[0].mintempC;
+        output += "<br/> Max Temp (c): " + marineWeather.data.weather[0].maxtempC;
+        output += "<br/> Cloud Cover: " + marineWeather.data.weather[0].hourly[0].cloudcover;
+
+        resultContainer.empty();
+        resultContainer.html(output);
+
+    }
+
+    function JSONP_MarineWeather(input) {
+        var url = _FreeApiBaseURL + "marine.ashx?q=" + input.query + "&format=" + input.format + "&fx=" + input.fx + "&key=" + _FreeApiKey;
+
+        jsonP(url, input.callback);
+    }
+
+    //-------------------------------------------
+
+    // Constructs packet to be sent using JSON-encoded data and sends packet
+    // Helper Method
+    function jsonP(url, callback) {
+        $.ajax({
+            type: 'GET',
+            url: url,
+            async: false,
+            contentType: "application/json",
+            jsonpCallback: callback,
+            dataType: 'jsonp',
+            success: function (json) {
+                console.dir('success');
+            },
+            error: function (e) {
+                console.log(e.message);
+            }
+        });
+    }
+    //-------------------------------------------
+
+</script>

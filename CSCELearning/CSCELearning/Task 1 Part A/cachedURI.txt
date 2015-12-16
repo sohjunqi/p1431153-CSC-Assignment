@@ -1,0 +1,1 @@
+http://api.worldweatheronline.com/free/v2/weather.ashx?q=singapore&format=xml&num_of_days=5&key=ffeecea954dc52242b2949d42bafa
