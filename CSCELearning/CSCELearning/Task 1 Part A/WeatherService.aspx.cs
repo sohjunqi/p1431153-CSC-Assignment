@@ -27,9 +27,9 @@ namespace CSCELearning.Task_1_Part_A
             url.Host = "api.worldweatheronline.com";
             url.Path = "free/v2/weather.ashx";
             url.Query = "q=singapore&format=xml&num_of_days=5&key=" + APIKey;
-
+            
             // URI caching and check
-            String cachedURI = File.ReadAllText("https://github.com/sohjunqi/p1431153-CSC-Assignment/blob/master/CSCELearning/CSCELearning/Task%201%20Part%20A/cachedURI.txt");
+            String cachedURI = File.ReadAllText(Server.MapPath("cachedURI.txt"));
 
             if (String.Compare(cachedURI, url.ToString()) == 0)
             {
