@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <data>
   <request>
-    <type>cccCity</type>
+    <type>Cached City</type>
     <query>Singapore, Singapore</query>
   </request>
   <current_condition>
