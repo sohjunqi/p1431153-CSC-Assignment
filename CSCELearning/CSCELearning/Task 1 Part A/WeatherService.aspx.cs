@@ -29,7 +29,7 @@ namespace CSCELearning.Task_1_Part_A
             url.Query = "q=singapore&format=xml&num_of_days=5&key=" + APIKey;
 
             // URI caching and check
-            String cachedURI = File.ReadAllText("./cachedURI.txt");
+            String cachedURI = File.ReadAllText("~/cachedURI.txt");
 
             if (String.Compare(cachedURI, url.ToString()) == 0)
             {
